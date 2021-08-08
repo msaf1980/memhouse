@@ -1,0 +1,33 @@
+syntax = "proto3";
+package memhouse;
+
+// Regenerate with protoc --gogoslick_out=plugins=. memhouse.proto
+
+// Metric
+message Metric {
+    string path = 1;
+    int64 timestamp = 2;
+    double value = 3;
+}
+
+// Fetch Metrics Request
+message FetchMetricsRequest {
+    int64 from = 1;
+    int64 until = 2;
+    repeated string path = 3;
+}
+
+message MetricValue {
+    int64 timestamp = 1;
+    double value = 2;
+}
+
+message MetricValues {
+    string path = 1;
+    repeated MetricValue values = 2;
+}
+
+// Fetch Metrics Responce
+message FetchMetricResponce {
+    repeated MetricValues metrics = 1;
+}

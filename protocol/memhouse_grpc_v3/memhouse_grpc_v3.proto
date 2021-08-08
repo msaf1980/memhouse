@@ -1,0 +1,16 @@
+syntax = "proto3";
+package memhouse_grpc_v3;
+
+// Regenerate with protoc --gogoslick_out=plugins=grpc:. memhouse_grpc_v3.proto --proto_path=. --proto_path=../../../../..
+import "github.com/msaf1980/memhouse/protocol/memhouse/memhouse.proto";
+
+message StoreMetricsResponce {
+    int32 code = 1;
+    string status = 2;
+}
+
+// RPC Services
+service Memhouse {
+    rpc FetchMetrics (memhouse.FetchMetricsRequest) returns (memhouse.FetchMetricResponce) {}
+    rpc StoreMetrics (stream memhouse.Metric) returns (StoreMetricsResponce) {}
+}
